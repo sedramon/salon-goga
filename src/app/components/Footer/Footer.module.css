@@ -1,0 +1,152 @@
+.footer {
+  background: #171717;
+  color: #fff;
+  width: 100%;
+  padding: 60px 20px;
+}
+
+/* CTA above footer */
+.cta {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 40px 20px;
+  background: #1f1f1f;
+  text-align: center;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ctaLabel {
+  display: block;
+  color: #f4c04a;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.ctaTitle {
+  font-size: 2rem;
+  margin: 0;
+  color: #fff;
+}
+.ctaButton {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: #f4c04a;
+  color: #171717;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+.ctaButton:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.content {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brand {
+  flex: 1 1 150px;
+}
+
+.nav {
+  flex: 2 1 300px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.nav a {
+  color: #f4c04a;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #f4c04a;
+  transition: width 0.3s ease;
+}
+.nav a:hover {
+  color: #ffffff;
+}
+.nav a:hover::after {
+  width: 100%;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: right;
+  font-size: 0.9rem;
+}
+.contactLink {
+  color: #f4c04a;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.contactLink:hover {
+  color: #ffffff;
+}
+
+.socials {
+  flex: 1 1 150px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.socials a {
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.socials a:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .cta, .top {
+    flex-direction: column;
+    text-align: center;
+  }
+  .contactInfo, .socials, .nav {
+    justify-content: center;
+  }
+}

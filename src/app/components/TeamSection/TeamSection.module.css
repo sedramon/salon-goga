@@ -1,0 +1,86 @@
+.wrapper {
+  padding: 80px 20px;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.heading {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #2e2e2e;
+  margin-bottom: 16px;
+}
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.4;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  flex: 0 1 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.ceo {
+  flex: 0 1 420px; /* larger card for CEO */
+}
+.imageWrapper {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.card:hover img {
+  transform: scale(1.05);
+}
+.info {
+  padding: 16px;
+  text-align: center;
+}
+.info h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: #171717;
+}
+.info p {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+}
+@media (max-width: 768px) {
+  .container {
+    gap: 20px;
+  }
+  .card, .ceo {
+    flex: 0 1 100%;
+  }
+  .imageWrapper {
+    height: 200px;
+  }
+}

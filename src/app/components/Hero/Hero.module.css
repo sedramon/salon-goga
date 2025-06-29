@@ -1,0 +1,88 @@
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg-url) no-repeat center center / cover;
+  
+  z-index: -2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1;
+}
+
+.overlay {
+  position: relative;
+  padding: 60px 40px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  max-width: 90%;
+  animation: fadeInUp 1s ease-out;
+}
+
+.mainTitle {
+  font-size: 4rem;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    90deg,
+    #f4c04a 0%,
+    #ffffff 50%,
+    #f4c04a 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 5s linear infinite;
+  position: relative;
+}
+
+.mainTitle::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #f4c04a;
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  color: #ddd;
+  font-style: italic;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% }
+  100% { background-position: 200% }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
