@@ -1,7 +1,7 @@
-// Footer.tsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import styles from './Footer.module.css';
 import Image from 'next/image';
 
@@ -25,31 +25,47 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer} ref={ref}>
-      {/* CTA above footer */}
       <div className={`${styles.cta} ${visible ? styles.visible : ''}`}>
         <span className={styles.ctaLabel}>Salon Goga</span>
-        <h3 className={styles.ctaTitle}>Pitajte! Za sve nedoumice, kontaktirajte nas.</h3>
-        <button className={styles.ctaButton}>Kontaktirajte nas</button>
+        <h3 className={styles.ctaTitle}>
+          Pitajte! Za sve nedoumice, kontaktirajte nas.
+        </h3>
+        <Link href="/kontakt" className={styles.ctaButton}>
+          Kontaktirajte nas
+        </Link>
       </div>
 
-      <div className={`${styles.content} ${visible ? styles.visible : ''}`}> 
+      <div className={`${styles.content} ${visible ? styles.visible : ''}`}>
         <div className={styles.top}>
           <div className={styles.brand}>
-            <Image
-              src="/salon-goga-logo.png"
-              alt="Salon Goga"
-              width={120}
-              height={60}
-            />
+            <Link href="/" className={styles.logoLink}>
+              <Image
+                src="/salon-goga-logo.png"
+                alt="Salon Goga"
+                width={120}
+                height={60}
+              />
+            </Link>
+
           </div>
           <nav className={styles.nav}>
-            <a href="/o-nama" target="_blank" rel="noopener noreferrer">O nama</a>
-            <a href="/cenovnik" target="_blank" rel="noopener noreferrer">Cenovnik</a>
-            <a href="/kontakt" target="_blank" rel="noopener noreferrer">Kontakt</a>
+            <a href="/o-nama" target="_blank" rel="noopener noreferrer">
+              O nama
+            </a>
+            <a href="/cenovnik" target="_blank" rel="noopener noreferrer">
+              Cenovnik
+            </a>
+            <a href="/kontakt" target="_blank" rel="noopener noreferrer">
+              Kontakt
+            </a>
           </nav>
           <div className={styles.contactInfo}>
-            <a href="tel:+381641234567" className={styles.contactLink}>📞 +381 64 123 4567</a>
-            <a href="mailto:info@salongoga.rs" className={styles.contactLink}>✉️ info@salongoga.rs</a>
+            <a href="tel:+381641234567" className={styles.contactLink}>
+              📞 +381 64 123 4567
+            </a>
+            <a href="mailto:info@salongoga.rs" className={styles.contactLink}>
+              ✉️ info@salongoga.rs
+            </a>
           </div>
           <div className={styles.socials}>
             <a
@@ -58,12 +74,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
-                src="/facebook-icon.webp"
-                alt="FB"
-                width={24}
-                height={24}
-              />
+              <Image src="/facebook-icon.webp" alt="FB" width={24} height={24} />
             </a>
             <a
               href="https://www.instagram.com/salongoga/"
@@ -71,12 +82,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
-                src="/instagram-con.webp"
-                alt="IG"
-                width={24}
-                height={24}
-              />
+              <Image src="/instagram-con.webp" alt="IG" width={24} height={24} />
             </a>
           </div>
         </div>

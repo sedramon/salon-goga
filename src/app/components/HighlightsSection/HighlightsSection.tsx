@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import styles from './HighlightsSection.module.css';
-
 
 export interface FeatureProps {
   title: string;
@@ -14,7 +14,6 @@ export interface FeatureProps {
 interface HighlightsSectionProps {
   features: FeatureProps[];
 }
-
 
 export default function HighlightsSection({ features }: HighlightsSectionProps) {
   const [visible, setVisible] = useState(false);
@@ -28,7 +27,9 @@ export default function HighlightsSection({ features }: HighlightsSectionProps) 
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      {
+        threshold: 0.2,
+      }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -41,10 +42,17 @@ export default function HighlightsSection({ features }: HighlightsSectionProps) 
     >
       {features.map((feature, index) => (
         <div key={index} className={styles.item}>
+          {/* image on left for even, right for odd */}
           {index % 2 === 0 ? (
             <>
               <div className={styles.imageWrapper}>
-                <img src={feature.image} alt={feature.alt} />
+                <Image
+                  src={feature.image}
+                  alt={feature.alt}
+                  width={600}
+                  height={400}
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
               <div className={styles.textWrapper}>
                 <h3>{feature.title}</h3>
@@ -58,7 +66,13 @@ export default function HighlightsSection({ features }: HighlightsSectionProps) 
                 <p>{feature.text}</p>
               </div>
               <div className={styles.imageWrapper}>
-                <img src={feature.image} alt={feature.alt} />
+                <Image
+                  src={feature.image}
+                  alt={feature.alt}
+                  width={600}
+                  height={400}
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
             </>
           )}

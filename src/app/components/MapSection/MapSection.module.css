@@ -1,0 +1,15 @@
+.wrapper {
+  width: 100vw;        /* full‐bleed */
+  margin-left: 50%;    /* trick to center full‐bleed in a container that may have padding */
+  transform: translateX(-50%);
+  height: 400px;       /* adjust height as needed */
+  position: relative;
+  overflow: hidden;
+}
+
+.map {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

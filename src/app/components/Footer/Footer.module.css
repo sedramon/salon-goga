@@ -1,18 +1,14 @@
 .footer {
-  background: #171717;
+  background: #1a1a1a;
   color: #fff;
   width: 100%;
   padding: 60px 20px;
 }
 
-/* CTA above footer */
+/* CTA */
 .cta {
-  max-width: 1200px;
-  margin: 0 auto 40px;
-  padding: 40px 20px;
-  background: #1f1f1f;
   text-align: center;
-  border-radius: 12px;
+  margin-bottom: 40px;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -22,33 +18,37 @@
   transform: translateY(0);
 }
 .ctaLabel {
-  display: block;
   color: #f4c04a;
-  font-weight: 500;
-  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
   margin-bottom: 8px;
 }
 .ctaTitle {
-  font-size: 2rem;
-  margin: 0;
-  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 16px;
 }
+/* Footer.module.css */
+
 .ctaButton {
-  margin-top: 20px;
-  padding: 12px 28px;
-  background: #f4c04a;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #f4c04a;
   color: #171717;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s, filter 0.2s;
-}
-.ctaButton:hover {
-  transform: scale(1.05);
-  filter: brightness(1.1);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+  text-decoration: none; /* no underline */
+  text-align: center;
 }
 
+.ctaButton:hover {
+  background-color: #e2b33f;
+  transform: translateY(-2px);
+}
+
+
+/* Main content */
 .content {
   opacity: 0;
   transform: translateY(40px);
@@ -69,10 +69,16 @@
   margin: 0 auto;
 }
 
-.brand {
-  flex: 1 1 150px;
+/* Brand/logo */
+.brand .logoLink {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.brand .logoLink:hover {
+  transform: scale(1.1);
 }
 
+/* Nav */
 .nav {
   flex: 2 1 300px;
   display: flex;
@@ -103,22 +109,23 @@
   width: 100%;
 }
 
+/* Contact info */
 .contactInfo {
+  flex: 1 1 200px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  text-align: right;
-  font-size: 0.9rem;
 }
 .contactLink {
-  color: #f4c04a;
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 .contactLink:hover {
-  color: #ffffff;
+  color: #f4c04a;
 }
 
+/* Social icons */
 .socials {
   flex: 1 1 150px;
   display: flex;
@@ -134,6 +141,7 @@
   transform: scale(1.1);
 }
 
+/* Bottom text */
 .bottom {
   text-align: center;
   margin-top: 20px;
@@ -142,11 +150,11 @@
 }
 
 @media (max-width: 768px) {
-  .cta, .top {
+  .top {
     flex-direction: column;
     text-align: center;
   }
-  .contactInfo, .socials, .nav {
+  .nav, .socials, .contactInfo {
     justify-content: center;
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import styles from './ImageSlider.module.css';
 
 export default function ImageSlider() {
@@ -25,6 +26,7 @@ export default function ImageSlider() {
       { threshold: 0.3 }
     );
     if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
   }, []);
 
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
@@ -35,7 +37,7 @@ export default function ImageSlider() {
       ref={ref}
       className={`${styles.heroSlider} ${visible ? styles.visible : ''}`}
     >
-      {/* INFO */}
+      {/* INFO TILE */}
       <div className="container">
         <div className={styles.infoTile}>
           <h2>
@@ -63,10 +65,19 @@ export default function ImageSlider() {
           >
             {images.map((src, i) => (
               <div key={i} className={styles.slide}>
-                <img src={src} alt={`Slide ${i + 1}`} />
+                {/* make this wrapper position: relative in CSS */}
+                <Image
+                  src={src}
+                  alt={`Slide ${i + 1}`}
+                  fill
+                  priority={i === 0}      // first slide loads eagerly
+                  sizes="100vw"           // full‐width slider
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
             ))}
           </div>
+
           <button className={`${styles.nav} ${styles.prev}`} onClick={prev}>
             ‹
           </button>

@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import styles from './PriceListSection.module.css';
-import { Service, serviceCategories } from '@/app/data/services';
+import { Service, serviceCategories } from '@/data/services';
 
 
 type ServiceWithCategory = Service & { category: string };

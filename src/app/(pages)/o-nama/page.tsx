@@ -1,9 +1,9 @@
-import Footer from "../components/Footer/Footer";
-import Hero from "../components/Hero/Hero";
-import HighlightsSection, { FeatureProps } from "../components/HighlightsSection/HighlightsSection";
-import PictureHighlightsSection from "../components/HighlightsSection/PictureHighlightsSection/PictureHighlightsSection";
-import PriceListSection from "../components/PriceListSection/PriceListSection";
-import TeamSection from "../components/TeamSection/TeamSection";
+import Footer from "@/app/components/Footer/Footer";
+import Hero from "@/app/components/Hero/Hero";
+import HighlightsSection, { FeatureProps } from "@/app/components/HighlightsSection/HighlightsSection";
+import PictureHighlightsSection from "@/app/components/HighlightsSection/PictureHighlightsSection/PictureHighlightsSection";
+import TeamSection from "@/app/components/TeamSection/TeamSection";
+
 
 
 const features: FeatureProps[] = [
@@ -32,13 +32,12 @@ export default function AboutPage() {
   return <main>
     <Hero
             title="O NAMA"
-            subtitle="Lepota je naša zabava!"
+            subtitle="Lepota je naša zabava"
             bg="/salon-goga-o-nama.jpg"
           />
     <HighlightsSection features={features} />
     <PictureHighlightsSection />
     <TeamSection />
-    <PriceListSection />
     <Footer/>
   </main>;
 }

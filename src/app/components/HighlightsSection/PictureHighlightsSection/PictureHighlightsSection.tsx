@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import styles from './PictureHighlightsSection.module.css';
 
 interface FeatureProps {
@@ -10,7 +11,6 @@ interface FeatureProps {
   alt: string;
 }
 
-// Hardcoded features for About Us page
 const features: FeatureProps[] = [
   {
     title: 'Budite hrabri',
@@ -53,32 +53,34 @@ export default function PictureHighlightsSection() {
   return (
     <section
       ref={ref}
-      className={`${styles.wrapper} ${visible ? styles.visible : ''} `}
+      className={`${styles.wrapper} ${visible ? styles.visible : ''}`}
     >
-        <div className="container">
-            <h2 className={styles.heading}>Zašto odabrati Salon Goga</h2>
-      <div className={styles.grid}>
-        {features.map((feature, idx) => (
-          <div key={idx} className={styles.card}>
-            <div className={styles.imageContainer}>
-              <img
-                src={feature.image}
-                alt={feature.alt}
-                className={styles.image}
-              />
-              <div className={styles.numberBadge}>
-                {String(idx + 1).padStart(2, '0')}
+      <div className="container">
+        <h2 className={styles.heading}>Zašto odabrati Salon Goga</h2>
+        <div className={styles.grid}>
+          {features.map((feature, idx) => (
+            <div key={idx} className={styles.card}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src={feature.image}
+                  alt={feature.alt}
+                  width={400}            // adjust to your design
+                  height={300}           // keep aspect ratio
+                  className={styles.image}
+                  style={{ objectFit: 'cover' }}
+                />
+                <div className={styles.numberBadge}>
+                  {String(idx + 1).padStart(2, '0')}
+                </div>
+              </div>
+              <div className={styles.textContainer}>
+                <h3 className={styles.title}>{feature.title}</h3>
+                <p className={styles.text}>{feature.text}</p>
               </div>
             </div>
-            <div className={styles.textContainer}>
-              <h3 className={styles.title}>{feature.title}</h3>
-              <p className={styles.text}>{feature.text}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
         </div>
-      
+      </div>
     </section>
   );
 }

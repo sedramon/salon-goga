@@ -1,7 +1,7 @@
-// ReviewsSection.tsx
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import styles from './ReviewsSection.module.css';
 import { FaStar } from 'react-icons/fa';
 
@@ -11,15 +11,30 @@ const stats = [
 ];
 
 const reviews = [
-  { name: 'Milica Jovanović', text: 'Izuzetan salon! Uvek profesionalno osoblje i prelepa atmosfera.', avatar: '/globe.svg', rating: 5 },
-  { name: 'Ana Petrović', text: 'Moja frizura nikada nije izgledala bolje. Topla preporuka svima!', avatar: '/globe.svg', rating: 4 },
-  { name: 'Marko Ilić', text: 'Odlična usluga i ljubazno osoblje. Uvek se rado vraćam.', avatar: '/globe.svg', rating: 5 },
+  {
+    name: 'Milica Jovanović',
+    text: 'Izuzetan salon! Uvek profesionalno osoblje i prelepa atmosfera.',
+    avatar: '/globe.svg',
+    rating: 5,
+  },
+  {
+    name: 'Ana Petrović',
+    text: 'Moja frizura nikada nije izgledala bolje. Topla preporuka svima!',
+    avatar: '/globe.svg',
+    rating: 4,
+  },
+  {
+    name: 'Marko Ilić',
+    text: 'Odlična usluga i ljubazno osoblje. Uvek se rado vraćam.',
+    avatar: '/globe.svg',
+    rating: 5,
+  },
 ];
 
 export default function ReviewsSection() {
   const [visible, setVisible] = useState(false);
   const [counts, setCounts] = useState<number[]>(stats.map(() => 0));
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLElement>(null);
 
   // Intersection reveal
   useEffect(() => {
@@ -49,7 +64,7 @@ export default function ReviewsSection() {
         frame++;
         const progress = Math.min(frame / totalFrames, 1);
         const current = target * progress;
-        setCounts(prev => {
+        setCounts((prev) => {
           const next = [...prev];
           next[i] = current;
           return next;
@@ -60,10 +75,7 @@ export default function ReviewsSection() {
   }, [visible]);
 
   return (
-    <section
-      ref={ref}
-      className={`${styles.wrapper} ${visible ? styles.visible : ''}`}
-    >
+    <section ref={ref} className={`${styles.wrapper} ${visible ? styles.visible : ''}`}>
       <h2 className={styles.heading}>Šta kažu naši klijenti</h2>
 
       <div className={styles.statsContainer}>
@@ -84,18 +96,22 @@ export default function ReviewsSection() {
       <div className={styles.cardsContainer}>
         {reviews.map((r, i) => (
           <div key={i} className={styles.card}>
-            <img src={r.avatar} alt={r.name} className={styles.avatar} />
+            <div className={styles.avatarWrapper}>
+              <Image
+                src={r.avatar}
+                alt={r.name}
+                width={72}
+                height={72}
+                className={styles.avatar}
+              />
+            </div>
             <div className={styles.stars}>
-              {Array(5)
-                .fill(0)
-                .map((_, idx) => (
-                  <FaStar
-                    key={idx}
-                    className={
-                      idx < r.rating ? styles.starFilled : styles.starEmpty
-                    }
-                  />
-                ))}
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <FaStar
+                  key={idx}
+                  className={idx < r.rating ? styles.starFilled : styles.starEmpty}
+                />
+              ))}
             </div>
             <p className={styles.text}>“{r.text}”</p>
             <p className={styles.name}>— {r.name}</p>
