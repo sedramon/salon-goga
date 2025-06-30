@@ -1,5 +1,6 @@
-import Footer from "../components/Footer/Footer";
-import Hero from "../components/Hero/Hero";
+import Footer from "@/app/components/Footer/Footer";
+import Hero from "@/app/components/Hero/Hero";
+
 
 export default function GalerijaPage() {
     return <main>
