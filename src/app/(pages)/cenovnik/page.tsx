@@ -3,6 +3,7 @@ import Footer from "@/app/components/Footer/Footer";
 import Hero from "@/app/components/Hero/Hero";
 import PackagesSection from "@/app/components/PackagesSection/PackagesSection";
 import PriceListSection from "@/app/components/PriceListSection/PriceListSection";
+import { mainSalonCategories } from "@/data/services";
 
 
 export default function CenovnikPage() {
@@ -14,7 +15,7 @@ export default function CenovnikPage() {
               />
         <PackagesSection />
         <ContactCtaSection />
-        <PriceListSection />
+        <PriceListSection categories={mainSalonCategories} />
         <Footer/>
       </main>;
 }

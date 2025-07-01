@@ -1,3 +1,4 @@
+// src/app/components/ContactInfoSection/ContactInfoSection.tsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -37,39 +38,77 @@ export default function ContactInfoSection() {
         <h2 className={styles.heading}>Vaši utisci</h2>
         <p className={styles.subheading}>
           Vaše mišljenje nam je od izuzetne važnosti, zato Vas molimo da
-          odvojite malo vremena i da nam napišete Vaše utiske na email:
-          <a href="mailto:goga@info.rs"> goga@info.rs</a>
+          odvojite malo vremena i da nam napišete Vaše utiske na email:{' '}
+          <a href="mailto:goga@info.rs">goga@info.rs</a>
         </p>
 
         <div className={styles.grid}>
           <div className={styles.card}>
             <FiPhone className={styles.icon} />
             <h3>Telefon</h3>
-            <p><a href="tel:+381654450415">+381 65 445 0415</a></p>
+            <p>
+              <a href="tel:+381654450415">+381 65 445 0415</a>
+            </p>
           </div>
 
           <div className={styles.card}>
             <FiMail className={styles.icon} />
             <h3>Email</h3>
-            <p><a href="mailto:goga0654450415@gmail.com">goga0654450415@gmail.com</a></p>
+            <p>
+              <a href="mailto:goga0654450415@gmail.com">
+                goga0654450415@gmail.com
+              </a>
+            </p>
           </div>
 
+          {/* Glavni salon address */}
           <div className={styles.card}>
             <FiMapPin className={styles.icon} />
-            <h3>Adresa</h3>
-            <p>Karađorđeva 22, Pančevo<br />26000 Srbija</p>
+            <h3>Adresa (Glavni salon)</h3>
+            <p>
+              Karađorđeva 22, Pančevo
+              <br />
+              26000 Srbija
+            </p>
+          </div>
+
+          {/* Mali salon address */}
+          <div className={styles.card}>
+            <FiMapPin className={styles.icon} />
+            <h3>Adresa (Mali salon)</h3>
+            <p>
+              Cara Dušana 60, Pančevo
+              <br />
+              26000 Srbija
+            </p>
           </div>
 
           <div className={styles.card}>
             <FiInstagram className={styles.icon} />
             <h3>Instagram</h3>
-            <p><a href="https://instagram.com/salongoga" target="_blank" rel="noopener noreferrer">@salongoga</a></p>
+            <p>
+              <a
+                href="https://instagram.com/salongoga"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @salongoga
+              </a>
+            </p>
           </div>
 
           <div className={styles.card}>
             <FiFacebook className={styles.icon} />
             <h3>Facebook</h3>
-            <p><a href="https://facebook.com/salongoga" target="_blank" rel="noopener noreferrer">salongoga</a></p>
+            <p>
+              <a
+                href="https://facebook.com/salongoga"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                salongoga
+              </a>
+            </p>
           </div>
         </div>
       </div>

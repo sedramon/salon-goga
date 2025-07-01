@@ -1,3 +1,4 @@
+// src/app/components/TeamSection/TeamSection.tsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -27,7 +28,7 @@ const employees: Employee[] = [
 
 export default function TeamSection() {
   const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -37,7 +38,10 @@ export default function TeamSection() {
           obs.disconnect();
         }
       },
-      { threshold: 0.3 }
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -52,7 +56,7 @@ export default function TeamSection() {
       <p className={styles.subtitle}>
         Pažljivo i dugo smo birali tim koji međusobno dobro funkcioniše i profesionalno se ophodi prema poslu.
       </p>
-      <div className={styles.container}>
+      <div className={styles.cardsWrapper}>
         {employees.map((emp, idx) => (
           <div
             key={idx}
@@ -65,7 +69,7 @@ export default function TeamSection() {
                 width={400}
                 height={250}
                 style={{ objectFit: 'cover' }}
-                priority={emp.isCeo}
+                priority
               />
             </div>
             <div className={styles.info}>

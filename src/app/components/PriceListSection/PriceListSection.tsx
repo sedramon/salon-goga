@@ -2,49 +2,45 @@
 
 import React, { useState, useMemo } from 'react';
 import styles from './PriceListSection.module.css';
-import { Service, serviceCategories } from '@/data/services';
+import type { Category, Service } from '../../../data/services';
 
+interface PriceListSectionProps {
+  categories: Category[];
+}
 
-type ServiceWithCategory = Service & { category: string };
-
-export default function PriceListSection() {
+export default function PriceListSection({ categories }: PriceListSectionProps) {
   const [search, setSearch] = useState('');
   const [activeCat, setActiveCat] = useState<string | null>(null);
 
-  // 1) Flatten categories → services[]
-  const services: ServiceWithCategory[] = useMemo(
+  // flatten with category
+  const allServices = useMemo(
     () =>
-      serviceCategories.flatMap((cat) =>
-        cat.services.map((s) => ({ ...s, category: cat.title }))
+      categories.flatMap((cat) =>
+        cat.services.map((svc) => ({ ...svc, category: cat.title }))
       ),
-    []
+    [categories]
   );
 
-  // 2) List of category titles
-  const categories = useMemo(
-    () => serviceCategories.map((cat) => cat.title),
-    []
-  );
+  // distinct titles
+  const cats = useMemo(() => categories.map((c) => c.title), [categories]);
 
-  // 3) Filter by search & selected category
+  // filter logic
   const filtered = useMemo(
     () =>
-      services.filter((s) => {
+      allServices.filter((s) => {
         const inCat = activeCat ? s.category === activeCat : true;
         const inSearch = s.name.toLowerCase().includes(search.toLowerCase());
         return inCat && inSearch;
       }),
-    [search, activeCat, services]
+    [allServices, activeCat, search]
   );
 
-  // 4) Group back into categories for display
+  // group by category
   const grouped = useMemo(() => {
-    const map: Record<string, ServiceWithCategory[]> = {};
-    filtered.forEach((s) => {
-      if (!map[s.category]) map[s.category] = [];
-      map[s.category].push(s);
-    });
-    return map;
+    return filtered.reduce<Record<string, Service[]>>((acc, svc) => {
+      (acc[svc.category] = acc[svc.category] || []).push(svc);
+      return acc;
+    }, {});
   }, [filtered]);
 
   return (
@@ -67,7 +63,7 @@ export default function PriceListSection() {
         >
           Sve
         </button>
-        {categories.map((cat) => (
+        {cats.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCat(cat)}
@@ -91,7 +87,7 @@ export default function PriceListSection() {
               </thead>
               <tbody>
                 {items.map((s, i) => (
-                  <tr key={`${s.name}-${i}`}>
+                  <tr key={i}>
                     <td>{s.name}</td>
                     <td>{s.price}</td>
                   </tr>
@@ -100,6 +96,21 @@ export default function PriceListSection() {
             </table>
           </div>
         ))}
+      </div>
+
+      {/* ——— Your note below all price lists ——— */}
+      <div className={styles.note}>
+        <p>
+          <strong>Napomena:</strong> Sve usluge u cenovniku navedene su
+          pojedinačno.
+        </p>
+        <p>
+          Primer: kod feniranja se računa cena pranja kose + feniranja.
+        </p>
+        <p>
+          Primer: kod Usluge farbanja se računa cena farbanja + pranja +
+          feniranja (ili sušenja) + potrošnje materijala.
+        </p>
       </div>
     </section>
   );

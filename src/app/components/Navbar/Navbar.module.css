@@ -21,26 +21,30 @@
 
 .brand {
   display: inline-block;
-  transition: 0.3s ease;
+  transition: transform 0.3s ease;
 }
-
 .brand:hover {
   transform: scale(1.1);
 }
 
+/* ensure nav sits below the hamburger */
 .nav {
   display: flex;
   gap: 30px;
   font-weight: 500;
+  position: relative;
+  z-index: 1000;
 }
-.nav a {
+.nav a,
+.menuItem {
   color: #fff;
   text-decoration: none;
   position: relative;
-  transition: color 0.3s;
   cursor: pointer;
+  transition: color 0.3s;
 }
-.nav a::after {
+.nav a::after,
+.menuItem::after {
   content: '';
   position: absolute;
   left: 0;
@@ -50,10 +54,12 @@
   background: #f4c04a;
   transition: width 0.3s;
 }
-.nav a:hover {
+.nav a:hover,
+.menuItem:hover {
   color: #f4c04a;
 }
-.nav a:hover::after {
+.nav a:hover::after,
+.menuItem:hover::after {
   width: 100%;
 }
 
@@ -64,9 +70,55 @@
   color: #fff;
   font-size: 1.8rem;
   cursor: pointer;
+  position: relative;
+  z-index: 1002; /* above everything */
 }
 
-/* Mobile view */
+/* Dropdown container */
+.dropdownParent {
+  position: relative;
+}
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  z-index: 1001;
+  pointer-events: none;
+}
+.dropdownMenu li {
+  margin: 0;
+}
+.dropdownMenu li a {
+  display: block;
+  padding: 8px 16px;
+  color: #171717;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.dropdownMenu li a:hover {
+  background: rgba(244, 192, 74, 0.1);
+  color: #171717;
+}
+.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ——— Mobile view ——— */
 @media (max-width: 768px) {
   .nav {
     position: fixed;
@@ -91,5 +143,60 @@
   }
   .hamburger {
     display: block;
+  }
+
+  /* collapse the dropdown inside the mobile menu */
+  .dropdownMenu {
+    position: static;
+    background: none;
+    backdrop-filter: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .dropdownMenu.show {
+    max-height: 200px; /* enough for the two items */
+  }
+  .dropdownMenu li a {
+    padding: 12px 0;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  /* match font-size & spacing of nav a */
+  .nav.mobileOpen .menuItem {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #fff;
+    position: relative;
+    padding: 0;        /* remove desktop padding */
+  }
+  /* keep its hover underline only */
+  .nav.mobileOpen .menuItem::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #f4c04a;
+    transition: width 0.3s;
+  }
+  .nav.mobileOpen .menuItem:hover::after {
+    width: 100%;
+  }
+
+  /* 2) Turn off the yellow-background hover on the submenu items */
+  .dropdownMenu li a:hover {
+    background: none !important;
+    color: white !important;
   }
 }

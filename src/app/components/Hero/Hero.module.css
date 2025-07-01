@@ -86,3 +86,15 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .overlay {
+    padding: 40px 20px;
+  }
+  .mainTitle {
+    font-size: 3rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+  }
+}

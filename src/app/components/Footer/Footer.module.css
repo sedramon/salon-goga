@@ -149,12 +149,58 @@
   opacity: 0.6;
 }
 
+/* --------------------------------------
+   Mobile tweaks for a tighter footer
+-------------------------------------- */
 @media (max-width: 768px) {
+  /* wrap everything a little closer */
   .top {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
+    gap: 12px;        /* shrink the vertical gap */
+    padding: 20px;
   }
-  .nav, .socials, .contactInfo {
+
+  /* force footer-nav into a row */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 12px;        /* smaller horizontal gap */
+    margin: 0;        /* remove extra bottom margin */
+  }
+  .nav a {
+    height: 50px;
+    font-size: 0.95rem;
+    padding: 4px 8px; /* smaller touch area */
+    margin: 0;
+  }
+
+  /* tighten the CTA above footer */
+  .cta {
+    padding: 40px 20px 20px; /* less bottom padding */
+    margin-bottom: 0;        /* remove that big gap */
+  }
+  .ctaTitle {
+    font-size: 1.4rem;       /* slightly smaller headline */
+  }
+
+  /* pull contact info & socials closer */
+  .contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .socials {
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* pull the copyright up */
+  .bottom {
+    font-size: 0.8rem;
+    margin-top: 16px;
   }
 }
